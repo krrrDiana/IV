@@ -1,0 +1,21 @@
+{
+  "name": "inner-voice-mvp",
+  "version": "1.0.0",
+  "description": "Voice Assistant Demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --require dotenv/config server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "voice",
+    "assistant"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^1.30.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}

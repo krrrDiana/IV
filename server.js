@@ -65,5 +65,5 @@ app.post('/api/process-text', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Inner Voice Server (Gemini) running on http://localhost:${PORT}`);
+    console.log(`Inner Voice Server (Gemini) running on http://localhost:${PORT}`git add.git add.
 });

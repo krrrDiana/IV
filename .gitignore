@@ -1,0 +1,12 @@
+# Тимчасові файли IDE та системи
+.DS_Store
+Thumbs.db
+*.vscode
+
+# Папки, які спричиняли помилку "Permission denied"
+/.vs/ 
+
+# Залежності Node.js та секрети
+/node_modules
+.env
+package-lock.json

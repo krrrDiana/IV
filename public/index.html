@@ -8,7 +8,7 @@
 
     <style>
         body {
-            /* Змінні для анімованого фону */
+            /* Variables for animated background (Pink/DodgerBlue/White) */
             --s: 25vmin;
             --p: calc(var(--s) / 2);
             --c1: pink;
@@ -17,20 +17,19 @@
             --bg: var(--c3);
             --d: 4000ms;
             --e: cubic-bezier(0.76, 0, 0.24, 1);
-            /* Анімований фон */
+            /* Animated Background */
             background-color: var(--bg);
             background-image: linear-gradient(45deg, var(--c1) 25%, transparent 25%), linear-gradient(-45deg, var(--c1) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--c2) 75%), linear-gradient(-45deg, transparent 75%, var(--c2) 75%);
             background-size: var(--s) var(--s);
             background-position: calc(var(--p) * 1) calc(var(--p) * 0), calc(var(--p) * -1) calc(var(--p) * 1), calc(var(--p) * 1) calc(var(--p) * -1), calc(var(--p) * -1) calc(var(--p) * 0);
             animation: color var(--d) var(--e) infinite, position var(--d) var(--e) infinite;
-            /* Загальні стилі body */
+            /* General body styles */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #2c3e50;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; /* Головний контейнер - flex */
+            align-items: flex-start; /* Вирівнювання елементів вгорі */
             min-height: 100vh;
             box-sizing: border-box;
         }
@@ -81,14 +80,71 @@
             }
         }
 
-        /* Стилі для контейнера та елементів */
+        /* --- НОВІ СТИЛІ МАКЕТА FLEXBOX --- */
+        .main-layout {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .history-sidebar {
+            flex: 0 0 250px; /* Фіксована ширина 250px */
+            background-color: rgba(255, 255, 255, 0.9); /* Напівпрозорий фон */
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+            height: calc(100vh - 40px); /* Висота як вікно перегляду мінус padding body */
+            overflow-y: auto; /* Дозволяє прокручування */
+            box-sizing: border-box;
+        }
+
+            .history-sidebar h2 {
+                color: #4b4b4b;
+                margin-top: 0;
+                border-bottom: 2px solid #ecf0f1;
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+                font-size: 1.4em;
+            }
+
+        #historyList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .history-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            background-color: #ecf0f1;
+            border-left: 3px solid #3c65f0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            color: #34495e;
+            transition: background-color 0.2s, transform 0.1s;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+            .history-item:hover {
+                background-color: #dce4e6;
+                transform: translateX(2px);
+            }
+
+        /* --- ІСНУЮЧІ СТИЛІ КОНТЕЙНЕРА --- */
         .container {
+            flex-grow: 1; /* Дозволити займати весь доступний простір */
+            max-width: 700px; /* Зменшуємо максимальну ширину контейнера */
             background-color: #ffffff;
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            max-width: 550px;
             text-align: center;
             box-sizing: border-box;
             transition: transform 0.3s ease-in-out;
@@ -132,13 +188,58 @@
         }
 
             #persona:focus {
-                /* [ЗМІНА] З темно-зеленого на пастельний фіолетовий */
-                border-color: #C5A8E6;
+                border-color: #4347ff;
                 outline: none;
             }
 
+        /* TEMPLATE BUTTONS CONTAINER */
+        .template-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* TEMPLATE BUTTON */
+        .template-button {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #3c65f0;
+            border-radius: 8px;
+            background-color: #e6f0ff;
+            color: #3c65f0;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+            text-align: center;
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+        }
+
+            .template-button:hover {
+                background-color: #3c65f0;
+                color: white;
+                box-shadow: 0 4px 8px rgba(60, 101, 240, 0.4);
+            }
+
+            .template-button:active {
+                transform: scale(0.98);
+            }
+
+            .template-button:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+        /* RECORD BUTTON */
         #recordButton {
-            /* [ЗМІНА] З темно-зеленого на пастельний фіолетовий */
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
             background-color: #4347ff;
             color: white;
             padding: 15px 35px;
@@ -148,18 +249,12 @@
             font-size: 1.1em;
             font-weight: 600;
             transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
-            /* [ЗМІНА] Тінь кнопки під новий колір */
             box-shadow: 0 6px 15px rgba(197, 168, 230, 0.6);
+            margin-bottom: 20px;
         }
 
             #recordButton:hover {
-                /* [ЗМІНА] Колір при наведенні (трохи темніший фіолетовий) */
                 background-color: #0400d6;
-            }
-
-            #recordButton:active {
-                transform: scale(0.98);
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             }
 
             #recordButton.recording {
@@ -189,11 +284,48 @@
             box-shadow: none;
         }
 
+        /* MANUAL INPUT TOGGLE BUTTON */
+        #manualToggleButton {
+            display: block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            background-color: #f7f9f9;
+            color: #4347ff;
+            border: 1px solid #4347ff;
+            border-radius: 30px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+            #manualToggleButton:hover {
+                color: white;
+                background-color: #4347ff;
+                box-shadow: 0 4px 8px rgba(67, 71, 255, 0.3);
+            }
+
+            #manualToggleButton:active {
+                transform: scale(0.98);
+            }
+
+        /* MANUAL INPUT SECTION STYLES */
+        #manualInputSection {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+        }
+
         .result-box {
             background-color: #f7f9f9;
             padding: 18px;
             border: 1px solid #e0e6e6;
-            /* [ЗМІНА] З темно-зеленого на пастельний фіолетовий */
             border-left: 5px solid #3c65f0;
             border-radius: 8px;
             margin-top: 10px;
@@ -214,6 +346,64 @@
             min-height: 20px;
             background-color: #ecf0f1;
             border-radius: 5px;
+            text-align: center;
+        }
+
+        /* TEXT INPUT STYLES */
+        .text-input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        #textInput {
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        #sendTextButton {
+            background-color: #4347ff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+            #sendTextButton:hover {
+                background-color: #0400d6;
+            }
+
+            #sendTextButton:disabled {
+                background-color: #bdc3c7;
+                cursor: not-allowed;
+            }
+
+        /* --- МЕДІА-ЗАПИТИ ДЛЯ АДАПТИВНОСТІ --- */
+        @media (max-width: 900px) {
+            /* Зміна макета на вертикальний на невеликих екранах */
+            .main-layout {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .history-sidebar {
+                width: 100%; /* Повна ширина */
+                height: auto; /* Автоматична висота */
+                max-height: 200px; /* Максимальна висота, щоб не займати забагато місця */
+                margin-right: 0;
+                margin-bottom: 20px; /* Відстань від основного контейнера */
+            }
+
+            .container {
+                max-width: 100%; /* Повна ширина */
+            }
         }
 
         @media (max-width: 600px) {
@@ -222,7 +412,7 @@
             }
 
             .container {
-                margin: 10px;
+                margin: 0;
                 padding: 25px;
             }
 
@@ -231,30 +421,55 @@
             }
         }
     </style>
-    <script defer src="script.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Inner Voice AI</h1>
-        <p>Choose your inner persona:</p>
+    <div class="main-layout">
 
-        <select id="persona">
-            <option value="Motivator">Motivator</option>
-            <option value="Philosopher">Philosopher</option>
-            <option value="Sarcastic Self">Sarcastic Self</option>
-        </select>
+        <div class="history-sidebar">
+            <h2>Query History</h2>
+            <ul id="historyList">
+            </ul>
+        </div>
+        <div class="container">
+            <h1>Inner Voice AI</h1>
+            <p>Choose your inner persona:</p>
 
-        <button id="recordButton">Start Recording</button>
+            <select id="persona">
+                <option value="Motivator">Motivator</option>
+                <option value="Philosopher">Philosopher</option>
+                <option value="Sarcastic Self">Sarcastic Self</option>
+            </select>
 
-        <div id="status">Press "Start Recording" and speak.</div>
+            <button id="recordButton">Start Recording (Voice)</button>
 
-        <h2>Your Thought:</h2>
-        <div id="transcribedText" class="result-box"></div>
+            <button id="manualToggleButton">Type Manually (Text)</button>
 
-        <h2>Inner Voice Response:</h2>
-        <div id="responseText" class="result-box"></div>
+            <div id="manualInputSection">
+
+                <h2>Select a Thought Starter:</h2>
+                <div class="template-buttons" id="templateButtons">
+                    <button class="template-button" data-template="I am confused by ">I am confused by...</button>
+                    <button class="template-button" data-template="I feel like I should give up on ">I feel like I should give up on...</button>
+                    <button class="template-button" data-template="I am not sure if it's right to ">I am not sure if it's right to...</button>
+                </div>
+
+                <div class="text-input-container">
+                    <input type="text" id="textInput" placeholder="Or type your thought here..." title="Enter your thought here">
+                    <button id="sendTextButton">Send</button>
+                </div>
+            </div>
+
+            <div id="status">Press "Start Recording" or "Type Manually" to begin.</div>
+
+            <h2>Your Thought:</h2>
+            <div id="transcribedText" class="result-box"></div>
+
+            <h2>Inner Voice Response:</h2>
+            <div id="responseText" class="result-box"></div>
+        </div>
     </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

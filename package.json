@@ -4,7 +4,7 @@
   "description": "Voice Assistant Demo",
   "main": "server.js",
   "scripts": {
-    "deploy": "gh-pages -d public", // <--- ЗМІНЮЄМО НА PUBLIC
+    "deploy": "gh-pages -d public",
     "start": "node --require dotenv/config server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

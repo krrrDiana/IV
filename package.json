@@ -4,8 +4,7 @@
   "description": "Voice Assistant Demo",
   "main": "server.js",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d .", // <-- Найпростіший деплой з кореня
     "start": "node --require dotenv/config server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

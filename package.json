@@ -4,6 +4,8 @@
   "description": "Voice Assistant Demo",
   "main": "server.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "node --require dotenv/config server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,5 +19,8 @@
     "@google/genai": "^1.30.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
